@@ -18,7 +18,7 @@ module.exports.nuevaPlaca = (req, res) => {
 
         placa.save((err, result) => {
             if(err)
-                return res.status(500).jsonp({error: 500, mensaje: `${err.mensaje}`});
+                return res.status(400).jsonp({error: 400, mensaje: 'Placa ya registrada'});
 
             return res.status(201).jsonp({
                 id_placa: result.id_placa,

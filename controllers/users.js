@@ -12,15 +12,16 @@ module.exports.registroUsuario = (req, res) => {
         password: req.body.password,
         direccion: req.body.direccion,
         num_personas: req.body.num_personas,
-        limite_consumo: req.body.limite_consumo
+        limite_consumo: req.body.limite_consumo,
+        isadmin: false
     });
 
     user.save((err, result) => {
         if (err)
             return res
-                .status(500)
+                .status(400)
                 .jsonp({
-                    error: 500,
+                    error: 400,
                     mensaje: `${err.message}`
                 });
 

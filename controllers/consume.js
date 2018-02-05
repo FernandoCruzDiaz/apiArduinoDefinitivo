@@ -2,6 +2,7 @@ const Consumo = require('../models/consume');
 const Usuario = require('../models/user');
 const Placa = require('../models/placa');
 const mongoose = require('mongoose');
+const Moment = require('moment');
 
 // POST Nuevo dato de consumo
 module.exports.nuevoDato = (req, res) => {
@@ -12,10 +13,9 @@ module.exports.nuevoDato = (req, res) => {
     let dato = new Consumo({
         id_placa: mongoose.Types.ObjectId(placa._id),
         consumo: req.body.consumo,
-        fecha_Inicio: Date.now(), //TODO //req.body.fecha_Inicio,
-        fecha_Fin: Date.now() //TODO //req.body.fecha_Fin
+        fecha_Fin: Moment(),
+        fecha_Inicio: Moment().subtract(req.body.segundos, 'seconds')
     });
-
     dato.save((err, result) => {
         if(err)
             return res.status(500).jsonp({error: 500, mensaje: `${err.mensaje}`});

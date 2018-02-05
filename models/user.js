@@ -10,7 +10,8 @@ const userSchema = new Schema({
     password: {type: String, select: false},
     num_personas: Number,
     direccion: String,
-    limite_consumo: Number
+    limite_consumo: Number,
+    isadmin: Boolean
 });
 
 userSchema.pre('save', function (next) {
